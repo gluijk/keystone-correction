@@ -38,7 +38,7 @@ undo.keystone = function(xd, yd, k) {
     return(c(xu, yu))  # return pair (xu, yu)
 }
 
-# Check it works fine -> OK
+# Check
 for (i in 1:4) {
     print(undo.keystone(xd[i], yd[i], k))
 }
