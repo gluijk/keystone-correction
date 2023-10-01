@@ -2,7 +2,6 @@
 # www.overfitting.net
 # https://www.overfitting.net/2023/09/transformacion-trapezoidal-de-imagenes.html
 
-library(png)
 
 # Keystone correction equations:
 # https://discorpy.readthedocs.io/en/latest/tutorials/methods.html
@@ -50,7 +49,7 @@ for (i in 1:4) {
 }
 
 
-# Plot
+# Plot trapezoids
 plot(c(xd, xd[1]), c(yd, yd[1]), type='l', col='blue', asp=1,
      xlab='X', ylab='Y', xlim=c(0,2100), ylim=c(0,800))
 lines(c(xu, xu[1]), c(yu, yu[1]), type='l', col='red')
