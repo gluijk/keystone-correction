@@ -2,8 +2,6 @@
 # www.overfitting.net
 # https://www.overfitting.net/
 
-library(png)
-
 # Keystone correction equations:
 # https://discorpy.readthedocs.io/en/latest/tutorials/methods.html
 # "2.2.7. Calculating coefficients of a correction model for perspective distortion"
@@ -44,6 +42,7 @@ for (i in 1:4) {
     print(undo.keystone(xd[i], yd[i], k))
 }
 
+
 # Plot
 plot(c(xd, xd[1]), c(yd, yd[1]), type='l', col='blue', asp=1,
      xlab='X', ylab='Y', xlim=c(-100,1100))
@@ -52,7 +51,6 @@ lines(c(xu, xu[1]), c(yu, yu[1]), type='l', col='red')
 for (i in 1:4) {
     lines(c(xd[i], xu[i]), c(yd[i], yu[i]), type='l', lty=3, col='darkgray')
 }
-
 
 # Circles
 xdp=c()
@@ -64,7 +62,6 @@ for (j in 0:4) {
         ydp=c(ydp, 500+R*(j/2+1)*cos(2*pi*i/200))
     }
 }
-
 lines(xdp, ydp, type='p', col='blue', pch=16, cex=0.6)
 for (i in 1:length(xdp)) {
     xuyu=undo.keystone(xdp[i], ydp[i], k)
