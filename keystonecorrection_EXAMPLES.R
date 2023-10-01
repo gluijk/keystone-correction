@@ -76,9 +76,6 @@ for (i in 1:4) {
 # Plot
 plot(c(xd, xd[1]), c(yd, yd[1]), type='l', col='blue', asp=1,
      xlab='X', ylab='Y',
-     xlim=c(min(xd,xu),max(xd,xu)), ylim=c(min(yd,yu),max(yd,yu)))
-plot(c(xd, xd[1]), c(yd, yd[1]), type='l', col='blue', asp=1,
-     xlab='X', ylab='Y',
      xlim=c(0,2500), ylim=c(0,2500))
 lines(c(xu, xu[1]), c(yu, yu[1]), type='l', col='red')
 for (i in 1:4) {
