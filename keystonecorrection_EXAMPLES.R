@@ -72,6 +72,7 @@ for (i in 1:4) {
     print(undo.keystone(xd[i], yd[i], k))
 }
 
+
 # Plot
 plot(c(xd, xd[1]), c(yd, yd[1]), type='l', col='blue', asp=1,
      xlab='X', ylab='Y',
