@@ -1,6 +1,6 @@
 # Linear keystone distortion correction
 # www.overfitting.net
-# https://www.overfitting.net/
+# https://www.overfitting.net/2023/10/transformacion-trapezoidal-de-imagenes.html
 
 
 # Keystone correction equations:

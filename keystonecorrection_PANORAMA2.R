@@ -1,8 +1,9 @@
 # Keystone distortion correction
 # www.overfitting.net
-# https://www.overfitting.net/
+# https://www.overfitting.net/2023/10/transformacion-trapezoidal-de-imagenes.html
 
 library(tiff)
+
 
 # Keystone correction equations:
 # https://discorpy.readthedocs.io/en/latest/tutorials/methods.html
@@ -77,5 +78,4 @@ for (x in 1:DIMXc) {
             imgc[y, x,]=imgd[xuyu[2], xuyu[1],]  # nearest neighbour interp
     }
 }
-
 writeTIFF(imgc, "corrected2.tif", bits.per.sample=16)
