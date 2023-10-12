@@ -11,16 +11,21 @@ library(tiff)
 
 # Distorted points (source)
 imgd=readTIFF("distorted.tif")
-xu=c(345, 330, 3072, 2999)  # top-left, bottom-left, bottom-right, top-right
-yu=c(274, 2072, 2040, 212)
-
-xu=c(345, 321, 3099, 2998)  # top-left, bottom-left, bottom-right, top-right
-yu=c(274, 3194, 3179, 210)
+xu=c(532, 1232, 2680, 2024)  # top-left, bottom-left, bottom-right, top-right
+yu=c(1706, 3134, 2570, 1057)
 
 # Undistorted points (destination)
 # imgu=readTIFF("undistorted.tif")  # not used
-xd=c((xu[1]+xu[2])/2, (xu[1]+xu[2])/2,(xu[3]+xu[4])/2, (xu[3]+xu[4])/2)
-yd=c((yu[1]+yu[4])/2, (yu[2]+yu[3])/2,(yu[2]+yu[3])/2, (yu[1]+yu[4])/2)
+sides=c(
+    ((xu[1]-xu[2])^2+(yu[1]-yu[2])^2)^0.5,
+    ((xu[2]-xu[3])^2+(yu[2]-yu[3])^2)^0.5,
+    ((xu[3]-xu[4])^2+(yu[3]-yu[4])^2)^0.5,    
+    ((xu[4]-xu[1])^2+(yu[4]-yu[1])^2)^0.5)
+side=mean(sides)
+posx=mean(xu)
+posy=mean(yu)
+xd=c(posx-side/2, posx-side/2, posx+side/2, posx+side/2)
+yd=c(posy-side/2, posy+side/2, posy+side/2, posy-side/2)
 
 # NOTE: we swap the distorted and undistorted trapezoids because
 # we want to model the transformation
@@ -57,26 +62,26 @@ for (i in 1:4) {
 
 # Plot trapezoids
 plot(c(xd, xd[1]), c(yd, yd[1]), type='l', col='red', asp=1,
-     xlab='X', ylab='Y', xlim=c(0, 3500), ylim=c(5000, 0))
+     xlab='X', ylab='Y', xlim=c(0, 4000), ylim=c(6000, 0))
 lines(c(xu, xu[1]), c(yu, yu[1]), type='l', col='blue')
 for (i in 1:4) {
     lines(c(xd[i], xu[i]), c(yd[i], yu[i]), type='l', lty=3, col='darkgray')
 }
-abline(h=c(0,4912), v=c(0,3264))
+abline(h=c(0,6000), v=c(0,4000))
 
 
 # Correct keystone distortion
 DIMXd=ncol(imgd)
 DIMYd=nrow(imgd)
 
-EDGE=200  # additional edge (Y axis)
+EDGE=1000  # additional edge (Y axis)
 imgc=array(0, dim=c(DIMYd+EDGE, DIMXd, 3))  # imgc=imgd*0
 
 DIMXc=ncol(imgc)
 DIMYc=nrow(imgc)
 for (x in 1:DIMXc) {
     for (y in 1:DIMYc) {
-        xuyu=round(undo.keystone(x, y-EDGE, k))  # add bottom
+        xuyu=round(undo.keystone(x, y+EDGE*0.2, k))  # add bottom
         if (xuyu[1]>=1 & xuyu[1]<=DIMXd & xuyu[2]>=1 & xuyu[2]<=DIMYd)
             imgc[y, x,]=imgd[xuyu[2], xuyu[1],]  # nearest neighbour interp
     }
