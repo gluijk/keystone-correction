@@ -11,9 +11,6 @@ library(tiff)
 
 # Distorted points (source)
 imgd=readTIFF("distorted.tif")
-xu=c(345, 330, 3072, 2999)  # top-left, bottom-left, bottom-right, top-right
-yu=c(274, 2072, 2040, 212)
-
 xu=c(345, 321, 3099, 2998)  # top-left, bottom-left, bottom-right, top-right
 yu=c(274, 3194, 3179, 210)
 
