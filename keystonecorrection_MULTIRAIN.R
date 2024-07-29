@@ -18,7 +18,7 @@ yu=c(1013, 1187, 1317, 1022)
 # imgu=readTIFF("undistorted.tif")  # not used
 xd=c((xu[1]+xu[2])/2, (xu[1]+xu[2])/2, (xu[3]+xu[4])/2, (xu[3]+xu[4])/2)
 yd=c((yu[1]+yu[4])/2, (yu[2]+yu[3])/2, (yu[2]+yu[3])/2, (yu[1]+yu[4])/2)
-disty=yd[2]-yd[1]  # manually adjust to accomplish 1:1 correction
+disty=yd[2]-yd[1]  # manual adjustment to respect 1:1 correction
 yd=c(yd[1], yd[1]+disty*210/237, yd[1]+disty*210/237, yd[4])   
 
 # NOTE: we swap the distorted and undistorted trapezoids because
