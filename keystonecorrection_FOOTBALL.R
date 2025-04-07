@@ -1,6 +1,6 @@
 # Keystone distortion correction
 # www.overfitting.net
-# https://www.overfitting.net/2023/10/transformacion-trapezoidal-de-imagenes.html
+# https://www.overfitting.net/2025/04/transformacion-trapezoidal-de-imagenes.html
 
 library(tiff)
 
@@ -22,7 +22,7 @@ posy=(yu[1]+yu[4])/2
 halflength=378.3
 width=454.6
 
-f=4.5  # scaling factor
+f=4.7  # scaling factor
 xd=c(posx, posx,         posx+halflength*f, posx+halflength*f)
 yd=c(posy, posy+width*f, posy+width*f,      posy)
 
